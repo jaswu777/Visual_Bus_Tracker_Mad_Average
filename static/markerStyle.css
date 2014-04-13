@@ -1,0 +1,28 @@
+/* CSS... bleh... */
+html, body, #map-canvas {
+	height: 100%;
+	margin: 2px;
+	padding: 4px;
+	background-color:#7B7B7B;
+}
+
+body {
+	overflow-x:hidden;
+}
+
+#yo_dawg {
+	background-color: #FFCCCC;
+	border-style:solid;
+	border-width:1px;
+}
+
+#center {
+	position:relative;
+	left:500px;
+	color:#898984;
+}
+
+#wheee {
+	position:relative;
+	left:560px;
+}

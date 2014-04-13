@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="/static/markerStyle.css">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<meta charset = "utf-8">
+	<title>Sup {{name}}!!</title>
+</head>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script>
+function initialize() {
+  var myLatlng = new google.maps.LatLng({{lat}}, {{lon}});
+  var mapOptions = {
+    zoom: 13,
+    center: myLatlng
+  };
+
+  var map = new google.maps.Map(
+      document.getElementById('map-canvas'),
+      mapOptions);
+
+  var trafficLayer = new google.maps.TrafficLayer();
+  trafficLayer.setMap(map);
+
+  var marker = new google.maps.Marker({
+	  position: myLatlng,
+	  map: map,
+	  //icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+	  title: "Your Location!"
+  }); 
+
+  /*function toggleBounce() {
+
+ 	 if (marker.getAnimation() != null) {
+    	marker.setAnimation(null);
+  	} else {
+    	marker.setAnimation(google.maps.Animation.BOUNCE);
+  	}
+	} */
+
+	var latitude = {{latitude}};
+	var longitude = {{longitude}};
+	var bus_name = {{bus_name|safe}};
+
+	for (var i = 0; i < latitude.length; i++) {
+		var myLatLng = new google.maps.LatLng(latitude[i],longitude[i]);
+		var marker = new google.maps.Marker({
+			position: myLatLng,
+			map: map,
+			icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+			animation: google.maps.Animation.DROP,
+			title: bus_name[i]
+		});
+	}
+}
+google.maps.event.addDomListener(window, 'load', initialize); 
+</script>
+</head>
+<body>
+<div id="yo_dawg"><h2 id="center">Please Don't Hurt Them!</h2></div>
+<div id="map-canvas"></div>
+<br />
+<p id="wheee"><em><strong>By... Jason Wu yet again...</strong></em></p>
+<br />
+</body>
+</html>
