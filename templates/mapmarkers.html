@@ -11,7 +11,7 @@
 function initialize() {
   var myLatlng = new google.maps.LatLng({{lat}}, {{lon}});
   var mapOptions = {
-    zoom: 13,
+    zoom: 15,
     center: myLatlng
   };
 
@@ -50,6 +50,20 @@ function initialize() {
 			icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
 			animation: google.maps.Animation.DROP,
 			title: bus_name[i]
+		});
+	}
+
+	var geolat = {{geolat}};
+	var geolon = {{geolon}};
+	var bus_stop = {{bus_stop|safe}};
+
+	for (var j = 0; j < bus_stop.length; j++) {
+		var myLatLng = new google.maps.LatLng(geolat[j], geolon[j]);
+		var marker = new google.maps.Marker({
+			position: myLatLng,
+			map: map,
+			icon: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png',
+			title: bus_stop[j]
 		});
 	}
 }
